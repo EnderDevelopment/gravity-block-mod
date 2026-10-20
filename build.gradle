@@ -1,0 +1,34 @@
+plugins {
+    id 'fabric-loom' version '1.4-SNAPSHOT'
+}
+
+def mod_version = project.property('mod_version')
+def minecraft_version = project.property('minecraft_version')
+def loader_version = project.property('loader_version')
+def maven_group = project.property('maven_group')
+def archives_base_name = project.property('archives_base_name')
+
+group = maven_group
+version = mod_version
+archivesBaseName = archives_base_name
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'Fabric'
+        url = 'https://maven.fabricmc.net/'
+    }
+}
+
+loom {
+    minecraftVersion = minecraft_version
+    mappings = 'official'
+    runs {
+        client {
+            property 'fabric.development', 'true'
+        }
+        server {
+            property 'fabric.development', 'true'
+        }
+    }
+}
